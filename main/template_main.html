@@ -1,0 +1,203 @@
+
+<header class="header">
+    <h2 class="header_title">O EUNSUN</h2>
+</header>
+
+<section class="section">
+    <h2 class="hide">본문</h2>
+    <article class="skill">
+        <h3 class="skill_title">Skill</h3>
+        <div class="skill_box">
+
+        </div>
+    </article>
+
+    <article class="hot">
+        <h3 class="hot_title">최근 HOT 이슈 - Bithumb 거래 정보</h3>
+        <div class="info_box" id="lastInfo">
+            <table>
+                <caption>Bithumb 마지막 거래 정보</caption>
+                <colgroup>
+                    <col style="width:150px">
+                    <col><col><col><col><col><col><col><col><col><col><col><col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th scope="row">구분</th>
+                    <th scope="row">BTC</th>
+                    <th scope="row">ETH</th>
+                    <th scope="row">DASH</th>
+                    <th scope="row">LTC</th>
+                    <th scope="row">ETC</th>
+                    <th scope="row">XRP</th>
+                    <th scope="row">BCH</th>
+                    <th scope="row">XMR</th>
+                    <th scope="row">ZEC</th>
+                    <th scope="row">QTUM</th>
+                    <th scope="row">BTG</th>
+                    <th scope="row">EOS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">최근 24시간 내 시작 거래금액</th>
+                    <td>{{BTC_data.opening_price | number:0}} 원</td>
+                    <td>{{ETH_data.opening_price | number:0}} 원</td>
+                    <td>{{DASH_data.opening_price | number:0}} 원</td>
+                    <td>{{LTC_data.opening_price | number:0}} 원</td>
+                    <td>{{ETC_data.opening_price | number:0}} 원</td>
+                    <td>{{XRP_data.opening_price | number:0}} 원</td>
+                    <td>{{BCH_data.opening_price | number:0}} 원</td>
+                    <td>{{XMR_data.opening_price | number:0}} 원</td>
+                    <td>{{ZEC_data.opening_price | number:0}} 원</td>
+                    <td>{{QTUM_data.opening_price | number:0}} 원</td>
+                    <td>{{BTG_data.opening_price | number:0}} 원</td>
+                    <td>{{EOS_data.opening_price | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 24시간 내 마지막 거래금액</th>
+                    <td>{{BTC_data.closing_price | number:0}} 원</td>
+                    <td>{{ETH_data.closing_price | number:0}} 원</td>
+                    <td>{{DASH_data.closing_price | number:0}} 원</td>
+                    <td>{{LTC_data.closing_price | number:0}} 원</td>
+                    <td>{{ETC_data.closing_price | number:0}} 원</td>
+                    <td>{{XRP_data.closing_price | number:0}} 원</td>
+                    <td>{{BCH_data.closing_price | number:0}} 원</td>
+                    <td>{{XMR_data.closing_price | number:0}} 원</td>
+                    <td>{{ZEC_data.closing_price | number:0}} 원</td>
+                    <td>{{QTUM_data.closing_price | number:0}} 원</td>
+                    <td>{{BTG_data.closing_price | number:0}} 원</td>
+                    <td>{{EOS_data.closing_price | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 24시간 내 최저 거래금액</th>
+                    <td>{{BTC_data.min_price | number:0}} 원</td>
+                    <td>{{ETH_data.min_price | number:0}} 원</td>
+                    <td>{{DASH_data.min_price | number:0}} 원</td>
+                    <td>{{LTC_data.min_price | number:0}} 원</td>
+                    <td>{{ETC_data.min_price | number:0}} 원</td>
+                    <td>{{XRP_data.min_price | number:0}} 원</td>
+                    <td>{{BCH_data.min_price | number:0}} 원</td>
+                    <td>{{XMR_data.min_price | number:0}} 원</td>
+                    <td>{{ZEC_data.min_price | number:0}} 원</td>
+                    <td>{{QTUM_data.min_price | number:0}} 원</td>
+                    <td>{{BTG_data.min_price | number:0}} 원</td>
+                    <td>{{EOS_data.min_price | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 24시간 내 최고 거래금액</th>
+                    <td>{{BTC_data.max_price | number:0}} 원</td>
+                    <td>{{ETH_data.max_price | number:0}} 원</td>
+                    <td>{{DASH_data.max_price | number:0}} 원</td>
+                    <td>{{LTC_data.max_price | number:0}} 원</td>
+                    <td>{{ETC_data.max_price | number:0}} 원</td>
+                    <td>{{XRP_data.max_price | number:0}} 원</td>
+                    <td>{{BCH_data.max_price | number:0}} 원</td>
+                    <td>{{XMR_data.max_price | number:0}} 원</td>
+                    <td>{{ZEC_data.max_price | number:0}} 원</td>
+                    <td>{{QTUM_data.max_price | number:0}} 원</td>
+                    <td>{{BTG_data.max_price | number:0}} 원</td>
+                    <td>{{EOS_data.max_price | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 24시간 내 평균 거래금액</th>
+                    <td>{{BTC_data.average_price | number:0}} 원</td>
+                    <td>{{ETH_data.average_price | number:0}} 원</td>
+                    <td>{{DASH_data.average_price | number:0}} 원</td>
+                    <td>{{LTC_data.average_price | number:0}} 원</td>
+                    <td>{{ETC_data.average_price | number:0}} 원</td>
+                    <td>{{XRP_data.average_price | number:0}} 원</td>
+                    <td>{{BCH_data.average_price | number:0}} 원</td>
+                    <td>{{XMR_data.average_price | number:0}} 원</td>
+                    <td>{{ZEC_data.average_price | number:0}} 원</td>
+                    <td>{{QTUM_data.average_price | number:0}} 원</td>
+                    <td>{{BTG_data.average_price | number:0}} 원</td>
+                    <td>{{EOS_data.average_price | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 24시간 내 Currency 거래량</th>
+                    <td>{{BTC_data.units_traded | number:0}} 원</td>
+                    <td>{{ETH_data.units_traded | number:0}} 원</td>
+                    <td>{{DASH_data.units_traded | number:0}} 원</td>
+                    <td>{{LTC_data.units_traded | number:0}} 원</td>
+                    <td>{{ETC_data.units_traded | number:0}} 원</td>
+                    <td>{{XRP_data.units_traded | number:0}} 원</td>
+                    <td>{{BCH_data.units_traded | number:0}} 원</td>
+                    <td>{{XMR_data.units_traded | number:0}} 원</td>
+                    <td>{{ZEC_data.units_traded | number:0}} 원</td>
+                    <td>{{QTUM_data.units_traded | number:0}} 원</td>
+                    <td>{{BTG_data.units_traded | number:0}} 원</td>
+                    <td>{{EOS_data.units_traded | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 1일간 Currency 거래량</th>
+                    <td>{{BTC_data.volume_1day | number:0}} 원</td>
+                    <td>{{ETH_data.volume_1day | number:0}} 원</td>
+                    <td>{{DASH_data.volume_1day | number:0}} 원</td>
+                    <td>{{LTC_data.volume_1day | number:0}} 원</td>
+                    <td>{{ETC_data.volume_1day | number:0}} 원</td>
+                    <td>{{XRP_data.volume_1day | number:0}} 원</td>
+                    <td>{{BCH_data.volume_1day | number:0}} 원</td>
+                    <td>{{XMR_data.volume_1day | number:0}} 원</td>
+                    <td>{{ZEC_data.volume_1day | number:0}} 원</td>
+                    <td>{{QTUM_data.volume_1day | number:0}} 원</td>
+                    <td>{{BTG_data.volume_1day | number:0}} 원</td>
+                    <td>{{EOS_data.volume_1day | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">최근 7일간 Currency 거래량</th>
+                    <td>{{BTC_data.volume_7day | number:0}} 원</td>
+                    <td>{{ETH_data.volume_7day | number:0}} 원</td>
+                    <td>{{DASH_data.volume_7day | number:0}} 원</td>
+                    <td>{{LTC_data.volume_7day | number:0}} 원</td>
+                    <td>{{ETC_data.volume_7day | number:0}} 원</td>
+                    <td>{{XRP_data.volume_7day | number:0}} 원</td>
+                    <td>{{BCH_data.volume_7day | number:0}} 원</td>
+                    <td>{{XMR_data.volume_7day | number:0}} 원</td>
+                    <td>{{ZEC_data.volume_7day | number:0}} 원</td>
+                    <td>{{QTUM_data.volume_7day | number:0}} 원</td>
+                    <td>{{BTG_data.volume_7day | number:0}} 원</td>
+                    <td>{{EOS_data.volume_7day | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">거래 대기건 최고 구매가</th>
+                    <td>{{BTC_data.buy_price | number:0}} 원</td>
+                    <td>{{ETH_data.buy_price | number:0}} 원</td>
+                    <td>{{DASH_data.buy_price | number:0}} 원</td>
+                    <td>{{LTC_data.buy_price | number:0}} 원</td>
+                    <td>{{ETC_data.buy_price | number:0}} 원</td>
+                    <td>{{XRP_data.buy_price | number:0}} 원</td>
+                    <td>{{BCH_data.buy_price | number:0}} 원</td>
+                    <td>{{XMR_data.buy_price | number:0}} 원</td>
+                    <td>{{ZEC_data.buy_price | number:0}} 원</td>
+                    <td>{{QTUM_data.buy_price | number:0}} 원</td>
+                    <td>{{BTG_data.buy_price | number:0}} 원</td>
+                    <td>{{EOS_data.buy_price | number:0}} 원</td>
+                </tr>
+                <tr>
+                    <th scope="row">거래 대기건 최소 판매가</th>
+                    <td>{{BTC_data.sell_price | number:0}} 원</td>
+                    <td>{{ETH_data.sell_price | number:0}} 원</td>
+                    <td>{{DASH_data.sell_price | number:0}} 원</td>
+                    <td>{{LTC_data.sell_price | number:0}} 원</td>
+                    <td>{{ETC_data.sell_price | number:0}} 원</td>
+                    <td>{{XRP_data.sell_price | number:0}} 원</td>
+                    <td>{{BCH_data.sell_price | number:0}} 원</td>
+                    <td>{{XMR_data.sell_price | number:0}} 원</td>
+                    <td>{{ZEC_data.sell_price | number:0}} 원</td>
+                    <td>{{QTUM_data.sell_price | number:0}} 원</td>
+                    <td>{{BTG_data.sell_price | number:0}} 원</td>
+                    <td>{{EOS_data.sell_price | number:0}} 원</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </article>
+
+    <article class="charts">
+        <h3 class="charts_title">거래정보 추이</h3>
+        <div class="charts_box" id="chartBox">
+
+        </div>
+    </article>
+</section>
