@@ -18,10 +18,17 @@ input:focus,select:focus,textarea:focus {outline: 0}
 html,body {height:100%; line-height:1.2}
 .hide {display:block; overflow:hidden; position:relative; z-index:-1; width:0; height:0; font-size:1px}
 
-.header {height:50px; background:#666; }
+.header {height:50px; background:#888}
 .header_title {color:#fff; font-size:30px; padding:5px 20px 0}
-article {width:1000px; margin:0 auto}
-.info_box {width:1000px; overflow-x:auto;}
-.info_box table {width:1200px}
+.hot {width:1000px; margin:0 auto; padding:20px 10px}
+.hot_title {padding:10px 0 15px; font-size:20px}
+.hot_box {width:1000px; overflow-x:auto;}
+.hot_box table {width:1200px}
+.comp {width:1000px; margin:0 auto; padding:20px 10px}
+.comp_title {padding:10px 0 15px; font-size:20px}
+.comp_box {width:1000px; overflow-x:auto;}
+.comp_box td {text-align:center}
+.comp_mark {color:blue; font-weight:bold}
+
 table th {height:30px; padding:6px 0; text-align:center; background:#eee; border:1px solid #fff}
 table td {text-align:right; border:1px solid #eee}

@@ -2,7 +2,7 @@
 
 angular.module('oos')
     .factory('lastInfoApi', ['$rootScope', '$http','$q', function ($rootScope, $http, $q) {
-        function proxyCallback(callback) {
+        function callbackFn(callback) {
             return function (res) {
                 if (res.status < 200 || res.status >= 300) {
                     return callback(res);
@@ -12,8 +12,7 @@ angular.module('oos')
                 }
                 return callback(null, res.data);
             };
-        }
-        $rootScope.proxyCallback = proxyCallback;
+        };
 
         var currency = '';
 
@@ -23,12 +22,28 @@ angular.module('oos')
             var req = {
                 method : "GET",
                 url : rest
-            }
-            $http(req).then(proxyCallback(callback));
+            };
+            $http(req).then(callbackFn(callback));
         };
 
-        return {
-            lastDeals : lastDeals
+        /* Bithumb 거래소 체결 완료 내역 */
+        function compleCurrency(callback,currency){
+            var rest = 'https://api.bithumb.com/public/recent_transactions/' + currency;
+            var req = {
+                method : "GET",
+                url : rest,
+                params : {
+                    count: 1
+                }
+            };
+            $http(req).then(callbackFn(callback))
         }
+
+
+        return {
+            lastDeals : lastDeals,
+            compleCurrency : compleCurrency
+        }
+
 
     }])
