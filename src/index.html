@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="oos">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bits</title>
+    <link rel="stylesheet" href="css/oeso.css"/>
+</head>
+<body ng-controller="commonCtrl" >
+    <h1 class="hide">O Eunsun's page</h1>
+
+    <div ng-view></div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+    <script src="https://code.angularjs.org/1.6.7/angular.js"></script>
+    <script src="https://code.angularjs.org/1.6.7/angular-aria.js"></script>
+    <script src="https://code.angularjs.org/1.6.7/angular-loader.js"></script>
+    <script src="https://code.angularjs.org/1.6.7/angular-resource.js"></script>
+    <script src="https://code.angularjs.org/1.6.7/angular-route.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+
+    <!-- live 나갈 때는 아래 result.js로 빌드해서 나감 -->
+    <!--<script src="build/result.js"></script>-->
+
+    <!-- 개발시 script -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script src="main/controller_main.js"></script>
+
+</body>
+</html>
