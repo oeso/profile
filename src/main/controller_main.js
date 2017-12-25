@@ -3,72 +3,73 @@ angular.module('oos')
 
         var currency = ['BTC', 'ETH', 'DASH', 'LTC', 'ETC', 'XRP', 'BCH', 'XMR', 'ZEC', 'QTUM', 'BTG', 'EOS'];
 
-        $rootScope.values = [];
+        $rootScope.dataValues = [];
 
         /* 마지막 거래 정보 */
         api.lastDeals(function(err,o){
             $scope.BTC_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['BTC', recentValues]);
+            $rootScope.dataValues.push(['BTC', recentValues]);
         },'BTC')
-        console.log($rootScope.values)
         api.lastDeals(function(err,o){
             $scope.ETH_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['ETH', recentValues]);
+            $rootScope.dataValues.push(['ETH', recentValues]);
         },'ETH')
         api.lastDeals(function(err,o){
             $scope.DASH_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['DASH', recentValues]);
+            $rootScope.dataValues.push(['DASH', recentValues]);
         },'DASH')
         api.lastDeals(function(err,o){
             $scope.LTC_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['LTC', recentValues]);
+            $rootScope.dataValues.push(['LTC', recentValues]);
         },'LTC')
         api.lastDeals(function(err,o){
             $scope.ETC_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['ETC', recentValues]);
+            $rootScope.dataValues.push(['ETC', recentValues]);
         },'ETC')
         api.lastDeals(function(err,o){
             $scope.XRP_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['XRP', recentValues]);
+            $rootScope.dataValues.push(['XRP', recentValues]);
         },'XRP')
         api.lastDeals(function(err,o){
             $scope.BCH_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['BCH', recentValues]);
+            $rootScope.dataValues.push(['BCH', recentValues]);
         },'BCH')
         api.lastDeals(function(err,o){
             $scope.XMR_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['XMR', recentValues]);
+            $rootScope.dataValues.push(['XMR', recentValues]);
         },'XMR')
         api.lastDeals(function(err,o){
             $scope.ZEC_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['ZEC', recentValues]);
+            $rootScope.dataValues.push(['ZEC', recentValues]);
         },'ZEC')
         api.lastDeals(function(err,o){
             $scope.QTUM_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['QTUM', recentValues]);
+            $rootScope.dataValues.push(['QTUM', recentValues]);
         },'QTUM')
         api.lastDeals(function(err,o){
             $scope.BTG_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['BTG', recentValues]);
+            var sd = ['BTG', recentValues]
+            console.log(recentValues)
+            $rootScope.dataValues.push(sd);
         },'BTG')
         api.lastDeals(function(err,o){
             $scope.EOS_data = o.data;
             var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.values.push(['EOS', recentValues]);
+            $rootScope.dataValues.push(['EOS', recentValues]);
         },'EOS');
 
-        console.log($rootScope.values)
+        console.log( $rootScope.dataValues)
 
         /* Bithumb 거래소 체결 완료 내역 */
         api.compleCurrency(function(err,o){
@@ -78,7 +79,7 @@ angular.module('oos')
         api.compleCurrency(function(err,o){
             $scope.zets = o.data[0]
         },'ZEC');
-
+console.log($rootScope.dataValues)
 
     }])
 
@@ -108,9 +109,19 @@ angular.module('oos').directive('makeChartBox',['$rootScope','$timeout','$filter
         replace : false,
         scope : false,
         link : function(scope, element, attrs){
-            //console.log("$scope.EOS_data:", scope.EOS_data)
-            console.log("$rootScope.values:", $rootScope.values)
-            var valueArrays =  $rootScope.values;
+            setTimeout(function(){console.log($rootScope.dataValues)},3000)
+            var valueArrays =  [['BTC', 23.7],
+                               ['Lagos', 16.1],
+                               ['Istanbul', 14.2],
+                               ['Karachi', 14.0],
+                               ['Mumbai', 12.5],
+                               ['Moscow', 12.1],
+                               ['São Paulo', 11.8],
+                               ['Beijing', 11.7],
+                               ['Guangzhou', 11.1],
+                               ['Delhi', 11.1],
+                               ['Shenzhen', 10.5],
+                               ['Seoul', 10.4]]//var $rootScope.dataValues;
 
             var charts = new Highcharts.Chart({
                 chart: {
@@ -147,20 +158,7 @@ angular.module('oos').directive('makeChartBox',['$rootScope','$timeout','$filter
                 },
                 series: [{
                     name: 'value',
-                    data: [
-                        ['BTC', 23.7],
-                        ['Lagos', 16.1],
-                        ['Istanbul', 14.2],
-                        ['Karachi', 14.0],
-                        ['Mumbai', 12.5],
-                        ['Moscow', 12.1],
-                        ['São Paulo', 11.8],
-                        ['Beijing', 11.7],
-                        ['Guangzhou', 11.1],
-                        ['Delhi', 11.1],
-                        ['Shenzhen', 10.5],
-                        ['Seoul', 10.4]
-                    ],
+                    data: valueArrays,
                     dataLabels: {
                         enabled: true,
                         rotation: -90,

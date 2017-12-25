@@ -7,8 +7,8 @@
 var cheerio = require("cheerio");
 var request = require("request");
 
+/* firebase 초기화 */
 var firebase = require("firebase");
-
 var config = {
     apiKey : "AIzaSyAEtHyBAIzFOHDFwPQqITuHtf5_Q0x9k14",
     authDomain : "bits-6d527.firebaseapp.com",
@@ -16,6 +16,7 @@ var config = {
     storageBucket : "bits.appspot.com"
 };
 firebase.initializeApp(config);
+
 var currencyItem = ['BTC', 'ETH', 'DASH', 'LTC', 'ETC', 'XRP', 'BCH', 'XMR', 'ZEC', 'QTUM', 'BTG', 'EOS'];
 var cnt = 0;
 
@@ -47,9 +48,9 @@ function publicBithumbLastInfo(cnt){
     }
 }
 
-/* 최근 24시간 기록. 24시간 기록 완료시 새로 덮어씀 */
+/* 1시간 이내 기록. 1시간 기록 완료시 새로 덮어씀 */
 var publicLastInfo = setInterval(function(){
-    if(cnt == 24){cnt = 0};
+    if(cnt == 7){cnt = 0};
     publicBithumbLastInfo(cnt);
     cnt++;
-}, 5000);
+}, 10000);
