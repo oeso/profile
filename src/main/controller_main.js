@@ -1,179 +1,207 @@
 angular.module('oos')
-    .controller('mainCtrl', [ '$window', '$rootScope', '$scope', '$location', '$http', '$filter', '$document','lastInfoApi', function($window, $rootScope, $scope, $location, $http, $filter, $document, api ) {
-
-        var currency = ['BTC', 'ETH', 'DASH', 'LTC', 'ETC', 'XRP', 'BCH', 'XMR', 'ZEC', 'QTUM', 'BTG', 'EOS'];
-
+    .controller('mainCtrl', [ '$window', '$rootScope', '$scope', '$location', '$http', '$q','$filter', '$document','lastInfoApi', function($window, $rootScope, $scope, $location, $http, $q, $filter, $document, api ) {
+        $scope.currencyValue = {};
         $rootScope.dataValues = [];
+        $rootScope.all = "";
 
         /* 마지막 거래 정보 */
         api.lastDeals(function(err,o){
-            $scope.BTC_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['BTC', recentValues]);
-        },'BTC')
-        api.lastDeals(function(err,o){
-            $scope.ETH_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['ETH', recentValues]);
-        },'ETH')
-        api.lastDeals(function(err,o){
-            $scope.DASH_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['DASH', recentValues]);
-        },'DASH')
-        api.lastDeals(function(err,o){
-            $scope.LTC_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['LTC', recentValues]);
-        },'LTC')
-        api.lastDeals(function(err,o){
-            $scope.ETC_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['ETC', recentValues]);
-        },'ETC')
-        api.lastDeals(function(err,o){
-            $scope.XRP_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['XRP', recentValues]);
-        },'XRP')
-        api.lastDeals(function(err,o){
-            $scope.BCH_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['BCH', recentValues]);
-        },'BCH')
-        api.lastDeals(function(err,o){
-            $scope.XMR_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['XMR', recentValues]);
-        },'XMR')
-        api.lastDeals(function(err,o){
-            $scope.ZEC_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['ZEC', recentValues]);
-        },'ZEC')
-        api.lastDeals(function(err,o){
-            $scope.QTUM_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['QTUM', recentValues]);
-        },'QTUM')
-        api.lastDeals(function(err,o){
-            $scope.BTG_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            var sd = ['BTG', recentValues]
-            console.log(recentValues)
-            $rootScope.dataValues.push(sd);
-        },'BTG')
-        api.lastDeals(function(err,o){
-            $scope.EOS_data = o.data;
-            var recentValues = $filter('number')(o.data.average_price, 0);
-            $rootScope.dataValues.push(['EOS', recentValues]);
-        },'EOS');
+            $rootScope.all = o.data;
+            $scope.BTC_data = o.data.BTC;
+            $scope.ETH_data = o.data.ETH;
+            $scope.DASH_data = o.data.DASH;
+            $scope.LTC_data = o.data.LTC;
+            $scope.ETC_data = o.data.ETC;
+            $scope.XRP_data = o.data.XRP;
+            $scope.BCH_data = o.data.BCH;
+            $scope.XMR_data = o.data.XMR;
+            $scope.ZEC_data = o.data.ZEC;
+            $scope.QTUM_data = o.data.QTUM;
+            $scope.BTG_data = o.data.BTG;
+            $scope.EOS_data = o.data.EOS;
 
-        console.log( $rootScope.dataValues)
+            $rootScope.allMinValues = [['BTC',  Number(o.data.BTC.min_price)], ['ETH',  Number(o.data.ETH.min_price)], ['DASH', Number(o.data.DASH.min_price)], ['LTC',  Number(o.data.LTC.min_price)], ['ETC',  Number(o.data.ETC.min_price)], ['XRP',  Number(o.data.XRP.min_price)], ['BCH',  Number(o.data.BCH.min_price)], ['XMR',  Number(o.data.XMR.min_price)], ['ZEC',  Number(o.data.ZEC.min_price)], ['QTUM', Number(o.data.QTUM.min_price)], ['BTG',  Number(o.data.BTG.min_price)], ['EOS',  Number(o.data.EOS.min_price)]
+            ];
+        },'ALL');
 
         /* Bithumb 거래소 체결 완료 내역 */
         api.compleCurrency(function(err,o){
-            console.log(o.data[0])
             $scope.bits = o.data[0]
         },'BTC')
         api.compleCurrency(function(err,o){
             $scope.zets = o.data[0]
         },'ZEC');
-console.log($rootScope.dataValues)
 
     }])
 
-angular.module('oos').directive('makeChartBox',['$rootScope','$timeout','$filter', function($rootScope, $timeout, $filter){
-    /*
+angular.module('oos').directive('priceInfoBox',['$rootScope','$timeout','$filter', function($rootScope, $timeout, $filter){
     return {
-    restrict: 'A',
-    template: '<div></div>',
-    templateUrl: 'directive.html',
-    replace: false,
-    priority: 0,
-    transclude: false,
-    scope: false,
-    terminal: false,
-    require: false,
-    controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
-    compile: function compile(tElement, tAttrs, transclude) {
-      return {
-        pre: function preLink(scope, iElement, iAttrs, controller) { ... },
-        post: function postLink(scope, iElement, iAttrs, controller) { ... }
-      }
-    },
-    link: function postLink(scope, iElement, iAttrs) { ... }
-  };
-  */
-    return {
+        restrict : 'A',
         replace : false,
-        scope : false,
-        link : function(scope, element, attrs){
-            setTimeout(function(){console.log($rootScope.dataValues)},3000)
-            var valueArrays =  [['BTC', 23.7],
-                               ['Lagos', 16.1],
-                               ['Istanbul', 14.2],
-                               ['Karachi', 14.0],
-                               ['Mumbai', 12.5],
-                               ['Moscow', 12.1],
-                               ['São Paulo', 11.8],
-                               ['Beijing', 11.7],
-                               ['Guangzhou', 11.1],
-                               ['Delhi', 11.1],
-                               ['Shenzhen', 10.5],
-                               ['Seoul', 10.4]]//var $rootScope.dataValues;
+        scope : {
+            items : "="
+        },
+        link : function(scope, element, attrs) {
+            var valueArrays;
+            $rootScope.$watch("allMinValues", function () {
+                if ($rootScope.allMinValues) {
+                    valueArrays = $rootScope.allMinValues;
+                    var arr = [];
+                    var newColor = {
+                        linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
+                        stops: [[0, '#d73127'], [1, '#ff8c43']]
+                    };
+                    for (var i=0; i<valueArrays.length; i++) {
+                        var arrdate = {name: valueArrays[i][0], y: valueArrays[i][1], r: 0, color: newColor};
+                        arr.push(arrdate);
+                    };
 
-            var charts = new Highcharts.Chart({
-                chart: {
-                    type: 'column',
-                    renderTo:element[0]
-                },
-                title: {
-                    text: 'Bithumb 최근 24시간 내 평균 거래금액'
-                },
-                subtitle: {
-                    text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
-                },
-                xAxis: {
-                    type: 'category',
-                    labels: {
-                        rotation: -45,
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
-                    }
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'unit (원)'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    pointFormat: 'Bithumb <b>{point.y:.1f} 원</b>'
-                },
-                series: [{
-                    name: 'value',
-                    data: valueArrays,
-                    dataLabels: {
-                        enabled: true,
-                        rotation: -90,
-                        color: '#FFFFFF',
-                        align: 'right',
-                        format: '{point.y:.1f}',
-                        y: 10,
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
-                    }
-                }]
+                    var charts = new Highcharts.Chart({
+                        chart: {
+                            renderTo : element[0],
+                            type: 'column'
+                        },
+                        title: {
+                            text: '평균금액'
+                        },
+                        plotOptions: {
+                            column: {
+                                borderWidth: 0
+                            },
+                            series: {
+                                pointWidth: 5,
+                                color: "#ff285a",
+                                borderRadius: 2
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            labels: {
+                                rotation: -45,
+                                style: {
+                                    fontSize: '12px'
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: '',
+                                style: {
+                                    color: "#eee"
+                                },
+                                align: "low",
+                                margin: 0,
+                                rotation: 360
+                            },
+                            min: 0,
+                            opposite: false,
+                            labels: {
+                                style: {
+                                    fontSize: "12px"
+                                }
+                            },
+                            gridLineWidth: 1,
+                            gridLineColor: "#a7a7a7"
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: '평균금액',
+                            data: arr
+                        }]
+                    });
+                };
             });
-
         }
     }
 }])
+
+angular.module('oos').directive('makeChartBox',['$rootScope','$timeout','$filter', function($rootScope, $timeout, $filter){
+    return {
+        restrict : 'A',
+        replace : false,
+        scope : {
+            items : "="
+        },
+        link : function(scope, element, attrs) {
+            var valueArrays;
+            $rootScope.$watch("allMinValues", function () {
+                if ($rootScope.allMinValues) {
+                    valueArrays = $rootScope.allMinValues;
+                    var arr = [];
+                    var newColor = {
+                        linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
+                        stops: [[0, '#d73127'], [1, '#ff8c43']]
+                    };
+                    for (var i=0; i<valueArrays.length; i++) {
+                        var arrdate = {name: valueArrays[i][0], y: valueArrays[i][1], r: 0, color: newColor};
+                        arr.push(arrdate);
+                    };
+
+                    var charts = new Highcharts.Chart({
+                        chart: {
+                            renderTo : element[0],
+                            type: 'column'
+                        },
+                        title: {
+                            text: '비트코인,제트캐시 체결내역 비교'
+                        },
+                        plotOptions: {
+                            column: {
+                                borderWidth: 0
+                            },
+                            series: {
+                                pointWidth: 5,
+                                color: "#ff285a",
+                                borderRadius: 2
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            labels: {
+                                rotation: -45,
+                                style: {
+                                    fontSize: '12px'
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: '',
+                                style: {
+                                    color: "#eee"
+                                },
+                                align: "low",
+                                margin: 0,
+                                rotation: 360
+                            },
+                            min: 0,
+                            opposite: false,
+                            labels: {
+                                style: {
+                                    fontSize: "12px"
+                                }
+                            },
+                            gridLineWidth: 1,
+                            gridLineColor: "#a7a7a7"
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: '비트코인,제트캐시 체결내역 비교',
+                            data: arr
+                        }]
+                    });
+                };
+            });
+        }
+    }
+}]);

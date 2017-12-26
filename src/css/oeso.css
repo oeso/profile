@@ -18,17 +18,28 @@ input:focus,select:focus,textarea:focus {outline: 0}
 html,body {height:100%; line-height:1.2}
 .hide {display:block; overflow:hidden; position:relative; z-index:-1; width:0; height:0; font-size:1px}
 
-.header {height:50px; background:#888}
-.header_title {color:#fff; font-size:30px; padding:5px 20px 0}
+.header {height:60px; padding-top:10px; border-bottom:1px solid #e35644}
+.header_title {width:156px; margin:0 auto; color:#fff; font-size:30px}
 .hot {width:1000px; margin:0 auto; padding:20px 10px}
-.hot_title {padding:10px 0 15px; font-size:20px}
+.hot_title {padding:10px 0 15px; font-size:16px}
 .hot_box {width:1000px; overflow-x:auto;}
 .hot_box table {width:1200px}
-.comp {width:1000px; margin:0 auto; padding:40px 10px}
-.comp_title {padding:10px 0 15px; font-size:20px}
-.comp_box {width:1000px; overflow-x:auto; padding:50px 0}
-.comp_box td {text-align:center}
-.comp_mark {color:blue; font-weight:bold}
+.charts_box {min-width:300px; max-width:360px; height:280px; margin:20px auto 0}
 
-table th {height:30px; line-height:1.7; padding:6px 0; text-align:center; background:#eee; border:1px solid #fff}
-table td {text-align:right; border:1px solid #eee}
+.price_info {padding:10px 10px 30px;}
+.price_info_box {max-width:1000px; border-bottom:1px solid #eee}
+.price_info_table {margin-bottom:-1px}
+.price_info_table th { line-height:1.7; text-align:center; background:#eee; border:1px solid #eee}
+.price_info_table td {text-align:right; height:30px; padding:0 10px; border:1px solid #eee}
+.pricd_info_tip {padding-bottom:8px; font-size:13px; text-align:right}
+.price_info_title {padding:10px 0 15px; font-size:15px}
+.price_info_head {height:30px; color:#fff; padding:5px 0 0; background:#e35644}
+.price_info_box tbody th {border:1px solid #fff; background:#f16c22; color:#fff; border-top:1px solid #f16c22}
+
+
+.comp {padding:0 10px 20px}
+.comp_title {padding:10px 0 0; font-size:15px}
+.comp_box {max-width:1000px; overflow-x:auto; padding:10px 0 20px}
+.comp_box th {height:30px; line-height:1.7; padding:6px 0; text-align:center; background:#eee; border:1px solid #fff}
+.comp_box td {text-align:center; border:1px solid #eee}
+.comp_mark {color:blue; font-weight:bold}

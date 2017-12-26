@@ -2,15 +2,15 @@
 
 angular.module('oos')
     .factory('lastInfoApi', ['$rootScope', '$http','$q', function ($rootScope, $http, $q) {
-        function callbackFn(callback) {
+        function callbackFn(fn) {
             return function (res) {
                 if (res.status < 200 || res.status >= 300) {
-                    return callback(res);
+                    return fn(res);
                 }
                 if (!res.data) {
-                    callback({message: 'no data!'});
+                    fn({message: 'no data!'});
                 }
-                return callback(null, res.data);
+                return fn(null, res.data);
             };
         };
 
