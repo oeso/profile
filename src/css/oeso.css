@@ -26,8 +26,8 @@ html,body {height:100%; line-height:1.2}
 .hot_box table {width:1200px}
 .charts_box {min-width:300px; max-width:360px; height:330px; margin:10px auto 0}
 
-.price_info {padding:10px}
-.price_info_box {margin-bottom:30px; max-width:1000px; border-bottom:1px solid #eee}
+.price_info {max-width:1000px; margin:0 auto; padding:10px}
+.price_info_box {margin-bottom:30px;  border-bottom:1px solid #eee}
 .price_info_table {margin-bottom:-1px}
 .price_info_table th { line-height:1.7; text-align:center; background:#eee; border:1px solid #eee}
 .price_info_table td {text-align:right; height:30px; padding:0 10px; border:1px solid #eee}
@@ -37,11 +37,11 @@ html,body {height:100%; line-height:1.2}
 .price_info_box tbody th {border:1px solid #fff; background:#f16c22; color:#fff; border-top:1px solid #f16c22}
 
 
-.comp {padding:0 10px 20px}
+.comp {max-width:1000px; margin:0 auto; padding:0 10px 20px}
 .comp_title {padding:10px 0 0; font-size:15px}
 .comp_box {max-width:1000px; overflow-x:auto; padding:10px 0 20px}
 .comp_head {height:30px; color:#fff; padding:5px 0 0; background:#e35644}
 .comp_box th {height:30px; line-height:1.7; text-align:center; background:#eee; border:1px solid #fff}
 .comp_box td {text-align:center; border:1px solid #eee}
 .comp_box tbody th {border:1px solid #fff; background:#f16c22; color:#fff; border-top:1px solid #f16c22}
-.comp_mark {color:blue; font-weight:bold}
+.comp_mark {color:#e35644; font-weight:bold}
