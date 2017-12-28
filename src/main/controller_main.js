@@ -62,7 +62,10 @@ angular.module('oos').directive('priceInfoBox',['$rootScope','$timeout','$filter
                             type: 'column'
                         },
                         title: {
-                            text: '평균금액'
+                            text: '-최근 24시간 내 평균금액-',
+                            style : {
+                                fontSize : "12px"
+                            }
                         },
                         plotOptions: {
                             column: {
@@ -85,20 +88,26 @@ angular.module('oos').directive('priceInfoBox',['$rootScope','$timeout','$filter
                         },
                         yAxis: {
                             title: {
-                                text: '',
+                                text: '가격',
                                 style: {
-                                    color: "#eee"
+                                    color: "#666"
                                 },
-                                align: "low",
+                                align: "middle",
                                 margin: 0,
-                                rotation: 360
+                                rotation: 270
                             },
                             min: 0,
                             opposite: false,
                             labels: {
+                                formatter : function(){
+                                    return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                                },
                                 style: {
                                     fontSize: "12px"
-                                }
+                                },
+                                align:"left",
+                                x:0,
+                                y:-3
                             },
                             gridLineWidth: 1,
                             gridLineColor: "#a7a7a7"
@@ -111,92 +120,6 @@ angular.module('oos').directive('priceInfoBox',['$rootScope','$timeout','$filter
                         },
                         series: [{
                             name: '평균금액',
-                            data: arr
-                        }]
-                    });
-                };
-            });
-        }
-    }
-}])
-
-angular.module('oos').directive('makeChartBox',['$rootScope','$timeout','$filter', function($rootScope, $timeout, $filter){
-    return {
-        restrict : 'A',
-        replace : false,
-        scope : {
-            items : "="
-        },
-        link : function(scope, element, attrs) {
-            var valueArrays;
-            $rootScope.$watch("allMinValues", function () {
-                if ($rootScope.allMinValues) {
-                    valueArrays = $rootScope.allMinValues;
-                    var arr = [];
-                    var newColor = {
-                        linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
-                        stops: [[0, '#d73127'], [1, '#ff8c43']]
-                    };
-                    for (var i=0; i<valueArrays.length; i++) {
-                        var arrdate = {name: valueArrays[i][0], y: valueArrays[i][1], r: 0, color: newColor};
-                        arr.push(arrdate);
-                    };
-
-                    var charts = new Highcharts.Chart({
-                        chart: {
-                            renderTo : element[0],
-                            type: 'column'
-                        },
-                        title: {
-                            text: '비트코인,제트캐시 체결내역 비교'
-                        },
-                        plotOptions: {
-                            column: {
-                                borderWidth: 0
-                            },
-                            series: {
-                                pointWidth: 5,
-                                color: "#ff285a",
-                                borderRadius: 2
-                            }
-                        },
-                        xAxis: {
-                            type: 'category',
-                            labels: {
-                                rotation: -45,
-                                style: {
-                                    fontSize: '12px'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: '',
-                                style: {
-                                    color: "#eee"
-                                },
-                                align: "low",
-                                margin: 0,
-                                rotation: 360
-                            },
-                            min: 0,
-                            opposite: false,
-                            labels: {
-                                style: {
-                                    fontSize: "12px"
-                                }
-                            },
-                            gridLineWidth: 1,
-                            gridLineColor: "#a7a7a7"
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: [{
-                            name: '비트코인,제트캐시 체결내역 비교',
                             data: arr
                         }]
                     });
